@@ -12,14 +12,23 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './pages/header/header.component';
-import { ProductosComponent } from './pages/productos/productos.component'; 
+import { ProductosComponent } from './pages/productos/productos.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ValidarEmailComponent } from './pages/validar-email/validar-email.component'; 
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ProductosComponent
+    ProductosComponent,
+    LoginComponent,
+    RegistroComponent,
+    ForgotPasswordComponent,
+    ValidarEmailComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +39,7 @@ import { ProductosComponent } from './pages/productos/productos.component';
     AngularFireStorageModule,
     AngularFireDatabaseModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

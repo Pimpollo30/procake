@@ -1,0 +1,14 @@
+<div class="container mt-5">
+    <div class="row col-lg-4 mx-auto" *ngIf="authService.userState as user">
+          <div style="border:1px solid rgb(180, 180, 180);" class="mb-4">
+            <p class="text-center mt-3" style="line-height:30px;">
+                <span class="fw-bold" style="font-size:20px;">¡Registro exitoso!</span>
+            <br/>
+            <mark style="background:rgba(0,0,0,.1)">
+                Se ha enviado un correo de verificación a <strong>{{user.email}}</strong>. Revisa en tu bandeja de entrada o spam</mark></p>
+              <div class="d-grid gap-2 col-12 mx-auto mt-3 mb-3">
+                  <button class="btn" id="restablecer" type="submit" (click)="authService.sendVerificationMail()">Reenviar correo de verificación</button>
+              </div>
+          </div>
+    </div>
+</div>

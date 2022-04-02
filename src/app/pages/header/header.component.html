@@ -16,10 +16,33 @@
           <li class="nav-item">
             <a class="nav-link" href="#" routerLink="/productos">Productos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+          <li class="nav-item" *ngIf="!(authService.userState) as user">
+            <a class="nav-link" href="#" routerLink="/login">Login</a>
+          </li>
+
+          <li class="nav-item dropdown" *ngIf="authService.userState as user">
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="rounded-pill" src="{{(user.photoURL) ? user.photoURL : '/assets/images/dummy.png'}}" alt="{{user.displayName}}" width="28" height="28">
+              {{(user.email) ? user.email : 'Usuario'}}
+            </a>
+          
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <li><a class="dropdown-item" id="logout" href="#" (click)="authService.logout()">Cerrar sesión</a></li>
+            </ul>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
+  <!-- <div class="row" *ngIf="authService.userState as user">
+    <div class="media">
+      <img class="align-self-start"
+        src="{{(user.photoURL) ? user.photoURL : '/assets/images/dummy.png'}}" alt="{{user.displayName}}">
+      <div class="media-body">
+        <h2>Hola: <strong>{{(user.displayName) ? user.displayName : 'Usuario'}}</strong></h2>
+        <p>User ID: <strong>{{user.uid}}</strong></p>
+        <p>Email: <strong>{{user.email}}</strong></p>
+      </div>
+    </div>
+  </div> -->

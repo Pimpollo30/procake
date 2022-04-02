@@ -1,0 +1,17 @@
+<div class="container mt-5">
+    <div class="row col-lg-4 mx-auto">
+          <div style="border:1px solid rgb(180, 180, 180);" class="mb-4">
+              <div class="mt-3">
+                  <label for="correo" class="form-label">Correo electrónico:</label>
+                  <input type="email" class="form-control" #userEmail required>
+              </div> 
+              <div class="mt-3">
+                  <label for="password" class="form-label">Contraseña:</label>
+                  <input type="password" class="form-control"  #userPassword required>
+              </div>
+              <div class="d-grid gap-2 col-6 mx-auto mt-3 mb-3">
+                  <button class="btn" id="registrarse" type="submit" (click)="authService.registrar(userEmail.value, userPassword.value)">Registrarse</button>
+              </div>
+          </div>
+    </div>
+</div>

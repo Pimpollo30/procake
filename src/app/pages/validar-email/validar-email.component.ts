@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-validar-email',
+  templateUrl: './validar-email.component.html',
+  styleUrls: ['./validar-email.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class ValidarEmailComponent implements OnInit {
 
   constructor(public authService:AuthService) { }
 
