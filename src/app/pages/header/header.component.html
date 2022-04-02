@@ -23,7 +23,7 @@
           <li class="nav-item dropdown" *ngIf="authService.userState as user">
             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                 <img class="rounded-pill" src="{{(user.photoURL) ? user.photoURL : '/assets/images/dummy.png'}}" alt="{{user.displayName}}" width="28" height="28">
-              {{(user.email) ? user.email : 'Usuario'}}
+              {{(user.displayName) ? user.displayName : user.email}}
             </a>
           
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
