@@ -49,12 +49,21 @@
 </div>
 </div>
 
-<div *ngIf="this.carritos.length == 0">
+<div *ngIf="this.carritos.length == 0 && authService.userState as user">
     <p class="text-center fw-bold mb-0" style="font-size:18px;">Actualmente no tienes productos agregados a tu carrito de compras</p> 
     <p class="text-center lead" style="font-size:20px;">Para continuar, agrega productos a tu carrito de compras</p> 
     <div class="d-grid gap-2 col-3 mx-auto mt-3 mb-3">
         <button class="btn btn-dark fw-bold" id="cc" routerLink="/productos">CONTINUAR COMPRANDO</button>
     </div>
 </div>
+
+<div *ngIf="!(authService.userState)">
+    <p class="text-center fw-bold mb-0" style="font-size:18px;">Aquí aparecerán todos los productos agregados a tu carrito de compras</p> 
+    <p class="text-center lead" style="font-size:20px;">Para continuar, debes iniciar sesión</p> 
+    <div class="d-grid gap-2 col-3 mx-auto mt-3 mb-3">
+        <button class="btn btn-dark fw-bold" id="cc" routerLink="/login">INICIAR SESIÓN</button>
+    </div>
+</div>
+
 
 </div>

@@ -3,6 +3,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Producto } from 'src/app/models/producto';
 import { Carrito } from 'src/app/models/carrito';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-carrito',
@@ -16,8 +17,9 @@ export class CarritoComponent implements OnInit {
   carritoProductos:any[] = [];
 
 
-  constructor(private productoService:ProductoService) { }
+  constructor(public authService:AuthService,private productoService:ProductoService) { }
   ngOnInit(): void {
+    if (this.authService.isLoggedIn == true) {
     this.productoService.getProductosCarrito().subscribe(data => {
       this.carritos = data.map(e => {
         return {
@@ -35,7 +37,7 @@ export class CarritoComponent implements OnInit {
         };
     });
   }); 
-
+}
   }
 
   removerProducto(id:string) {
