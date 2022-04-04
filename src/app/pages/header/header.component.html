@@ -8,13 +8,16 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <div class="collapse navbar-collapse justify-content-end fw-bold" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#" routerLink="/home">Inicio</a>
+            <a class="nav-link" href="#" routerLink="/home" >Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" routerLink="/productos">Productos</a>
+          </li>
+          <li class="nav-item" *ngIf="authService.userState as user">
+            <a class="nav-link" href="#" routerLink="/carrito">Ver carrito</a>
           </li>
           <li class="nav-item" *ngIf="!(authService.userState) as user">
             <a class="nav-link" href="#" routerLink="/login">Login</a>
@@ -26,7 +29,10 @@
               {{(user.displayName) ? user.displayName : user.email}}
             </a>
           
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
+              <li *ngIf="authService.tipo == 'admin'"><h6 class="dropdown-header">Opciones de Administrador</h6></li>
+              <li *ngIf="authService.tipo == 'admin'"><a class="dropdown-item" id="logout" href="#" routerLink="/agregarProductos">Agregar productos</a></li>
+              <li *ngIf="authService.tipo == 'admin'"><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" id="logout" href="#" (click)="authService.logout()">Cerrar sesión</a></li>
             </ul>
           </li>

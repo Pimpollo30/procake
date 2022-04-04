@@ -20,6 +20,7 @@ export interface User{
 
 export class AuthService {
   userState: any;
+  tipo: any;
 
   constructor(
     public firestore: AngularFirestore,
@@ -32,6 +33,7 @@ export class AuthService {
         this.userState = user;
         localStorage.setItem('user',JSON.stringify(this.userState));
         JSON.parse(localStorage.getItem('user') as any);
+        this.setTipo(this.userState.uid);
       }else{
         localStorage.setItem('user',null!);
         JSON.parse(localStorage.getItem('user') as any);
@@ -44,7 +46,11 @@ export class AuthService {
     return this.fireAuth.signInWithEmailAndPassword(email,password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['home']);
+          if (result.additionalUserInfo?.isNewUser) {
+            this.router.navigate(['datos-usuario']);
+          }else {
+            this.router.navigate(['home']);
+          }
         });
         this.setUserData(result.user);
       }).catch((error) => {
@@ -84,9 +90,10 @@ export class AuthService {
   //getter para cuando el usuario está logueado
   get isLoggedIn():boolean{
     const user = JSON.parse(localStorage.getItem('user') as any);
-    return (user != null && user.emailVerified != false) ? true : false;
+    return (user != null /*&& user.emailVerified != false*/) ? true : false;
   }
 
+  
   //método para autenticarse con Google
   googleAuth(){
     return this.authLogin(new firebase.auth.GoogleAuthProvider());
@@ -97,12 +104,23 @@ export class AuthService {
     return this.fireAuth.signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['home']);
+            this.router.navigate(['home']);
         })
         this.setUserData(result.user);
+        this.setTipo((result.user as any).uid);
       }).catch((error) => {
         window.alert(error.message)
       })
+  }
+
+  setTipo(uid:string) {
+    this.firestore.collection('datos_usuario').ref.where("id_user","==",uid).limit(1).get().then((querySnapshot) => {
+      if (!querySnapshot.empty) {
+        querySnapshot.forEach((doc) => {
+          return this.tipo = (doc.data() as any).tipo_usuario;
+        })
+      }
+    });
   }
 
   setUserData(user:any){
@@ -113,10 +131,17 @@ export class AuthService {
       email: user.email,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
     }
+    localStorage.setItem('user',JSON.stringify(userState));
     return userRef.set(userState,{merge:true})
   }
+
+  getUserData() {
+    const user = JSON.parse(localStorage.getItem('user') as any);
+    return user;
+  }
+
 
   //método para cerrar sesión
   logout(){

@@ -18,6 +18,12 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ValidarEmailComponent } from './pages/validar-email/validar-email.component'; 
 import { AuthService } from './services/auth.service';
+import { DatosUsuarioComponent } from './pages/datos-usuario/datos-usuario.component';
+import { UsuarioService } from './services/usuario.service';
+import { FormsModule } from '@angular/forms';
+import { CarritoComponent } from './pages/carrito/carrito.component';
+import { ConfirmarPedidoComponent } from './pages/confirmar-pedido/confirmar-pedido.component';
+import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,11 @@ import { AuthService } from './services/auth.service';
     LoginComponent,
     RegistroComponent,
     ForgotPasswordComponent,
-    ValidarEmailComponent
+    ValidarEmailComponent,
+    DatosUsuarioComponent,
+    CarritoComponent,
+    ConfirmarPedidoComponent,
+    ConfirmacionComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +47,10 @@ import { AuthService } from './services/auth.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

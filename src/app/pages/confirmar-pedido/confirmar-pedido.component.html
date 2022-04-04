@@ -1,0 +1,49 @@
+<section class="container">
+    <h2 class="text-center mt-3">Confirmación de pedido</h2>
+    <div class="row py-lg-3">
+
+        <div class="col-sm-8">
+            <h4>Información de envío</h4>
+            <div class="col-12 text-left">
+
+                <p class="lead">
+                  Nombre: {{usuario.nombre+" "+usuario.apellidos}}<br/>
+                  Calle: {{usuario.calle}}<br/>
+                  Número exterior: {{usuario.no_ext}}<br/>
+                  Número interior: {{usuario.no_int}}<br/>
+                  Colonia: {{usuario.colonia}}<br/>
+                  Código postal: {{usuario.cp}}<br/>
+                  Ciudad: {{usuario.ciudad}}<br/>
+                  Estado: {{usuario.estado}}<br/>
+                  Teléfono: {{usuario.telefono}}<br/>
+                </p>
+                <hr class="mx-auto dropdown-divider">
+                <p class="lead">
+                    Forma de pago: En efectivo
+                </p>
+                <hr class="mx-auto dropdown-divider">
+
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <h4>Productos</h4>
+
+            <ul class="list-group">
+                <li *ngFor="let carrito of carritoProductos" class="list-group-item">
+                    <img style="width:50px;height:50px;float:left;margin-right:10px;" src="{{carrito.url_img}}" class="img-fluid rounded-start" alt="...">
+                    <h5 class="card-title small">{{carrito.nombre}}</h5>
+                    <p class="card-text mb-2 small"><strong>Cantidad:</strong> {{carrito.cantidad}} | Total: <strong>${{carrito.cantidad*carrito.precio}}</strong></p>
+                </li>
+                <li *ngIf="this.carritoProductos.length != 0" class="list-group-item">
+                    <p class="text-end mb-0">Total: <strong>${{getTotal()}}</strong></p>
+                </li>
+              </ul>
+              <div class="justify-content-center mt-2">
+                <div class="d-grid gap-2">
+                <button class="btn col-12" type="button" id="confirmar-pedido" (click) ="agregarPedido()">Confirmar pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
