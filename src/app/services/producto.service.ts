@@ -48,11 +48,13 @@ export class ProductoService {
   }
 
   agregarPedido() {
-    this.getProductosCarrito().subscribe(data => {
-      data.forEach((doc) => {
-        this.firestore.doc('/carrito/'+doc.payload.doc.id).delete();
-      });
-    })
+    const user = this.authService.getUserData();
+    this.firestore.collection('carrito', ref => ref 
+    .where("id_usuario", "==" , user.uid)).get().subscribe(data => {
+      data.forEach(doc => {
+        doc.ref.delete();
+      })
+    });
     this.router.navigate(['confirmacion']);
   }
 
