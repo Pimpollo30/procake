@@ -42,5 +42,6 @@ export class AgregarCategoriasComponent implements OnInit {
   actualizarCategoria() {
     this.productoService.actualizarCategoria(this.categoria);
     this.categoria = new Categoria();
+    this.categoria.nombre = '';
   }
 }

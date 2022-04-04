@@ -1,8 +1,10 @@
-export class Producto {
-    id!: string;
-    nombre!: string;
-    descripcion!: string;
-    tamano!: string; 
-    tipo!: string;
-    url_img!: string;
+export class Producto{
+    id!:             string;
+    descripcion!:    string;
+    nombre!:         string;
+    precio!:         number;
+    tamano!:         number;
+    tipo!:           string;
+    url_img!:        string;
+
 }

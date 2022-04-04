@@ -14,6 +14,15 @@ export class Usuario {
     tipo_usuario!: string;
 
     constructor() {
-
+        this.nombre = '';
+        this.apellidos = '';
+        this.calle = '';
+        this.no_int = '';
+        this.no_ext = '';
+        this.colonia = '';
+        this.cp = '';
+        this.ciudad = '';
+        this.estado = '';
+        this.telefono = '';
     }
 }

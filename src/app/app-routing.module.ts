@@ -12,24 +12,26 @@ import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProductosComponent } from './pages/productos/productos.component';
+import { Productos2Component } from './pages/productos2/productos2.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ValidarEmailComponent } from './pages/validar-email/validar-email.component';
 import { VerProductoComponent } from './pages/ver-producto/ver-producto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:'full' },
-  { path: 'home', component: HomeComponent, canActivate:[DatosGuard]},
-  { path: 'productos', component: ProductosComponent, canActivate:[DatosGuard]},
+  { path: 'home', component: HomeComponent},
+  { path: 'agregarProductos', component: ProductosComponent, canActivate:[AuthGuard]},
   { path: 'login', component: LoginComponent, canActivate:[LoginGuard]},
   { path: 'registrarse', component: RegistroComponent, canActivate:[LoginGuard]},
   { path: 'forgot-password', component: ForgotPasswordComponent, canActivate:[LoginGuard]},
   { path: 'validar-email', component: ValidarEmailComponent, canActivate:[LoginGuard]},
   { path: 'datos-usuario', component: DatosUsuarioComponent, canActivate:[AuthGuard]},
-  { path: 'carrito', component: CarritoComponent, canActivate:[DatosGuard, AuthGuard]},
+  { path: 'carrito', component: CarritoComponent},
   { path: 'confirmar-pedido', component: ConfirmarPedidoComponent, canActivate:[DatosGuard, AuthGuard]},
-  { path: 'confirmacion', component: ConfirmacionComponent, canActivate:[DatosGuard, AuthGuard]},
-  { path: 'ver-producto', component: VerProductoComponent, canActivate:[DatosGuard]},
-  { path: 'agregarCategorias', component: AgregarCategoriasComponent},
+  { path: 'confirmacion', component: ConfirmacionComponent},
+  { path: 'ver-producto', component: VerProductoComponent},
+  { path: 'agregarCategorias', component: AgregarCategoriasComponent, canActivate:[AuthGuard]},
+  { path: 'productos', component: Productos2Component},
 ];
 
 @NgModule({

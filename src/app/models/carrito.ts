@@ -4,4 +4,7 @@ export class Carrito {
     fec_solicitud!: string;
     id_producto!: string; 
     id_usuario!: string;
+    constructor() {
+        this.cantidad = 1;
+    }
 }

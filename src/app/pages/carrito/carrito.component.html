@@ -3,20 +3,20 @@
     <h3 class="text-center mt-2">Carrito de compras</h3>
 <hr class="mx-auto dropdown-divider" style="max-width: 700px;">
 
-<div *ngFor="let carrito of carritoProductos">
+<div *ngFor="let carrito of carritos">
     <div class="card mb-3 mx-auto border-0" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
-            <img src="{{carrito.url_img}}" class="img-fluid rounded-start" alt="...">
+            <img src="{{getProducto(carrito.id_producto).url_img}}" class="img-fluid rounded-start" alt="...">
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{carrito.nombre}}</h5>
-              <p class="card-text mb-2">{{carrito.descripcion}}</p>
+              <h5 class="card-title">{{getProducto(carrito.id_producto).nombre}}</h5>
+              <p class="card-text mb-2">{{getProducto(carrito.id_producto).descripcion}}</p>
               <p class="card-text mb-2"><strong>Cantidad:</strong> {{carrito.cantidad}}</p>
                 <div class="row">
                     <div class="col-6">
-                        <p class="card-text h5">Total: <strong>${{carrito.cantidad*carrito.precio}}</strong></p>
+                        <p class="card-text h5">Total: <strong>${{carrito.cantidad*getProducto(carrito.id_producto).precio}}</strong></p>
                     </div>
                     <div class="col-6 d-flex justify-content-end">
                         <button class="btn fw-bold" id="remover" (click)="removerProducto(carrito.id)">Remover</button>
@@ -30,7 +30,7 @@
       <hr class="mx-auto dropdown-divider" style="max-width: 700px;">
 </div>
 
-<div *ngIf="this.carritoProductos.length != 0">
+<div *ngIf="this.carritos.length != 0">
 <div class="row col-6 mx-auto">
     <div class="col-6">
         <p class="mt-2 text-start" style="font-size:22px;">Total</p>
@@ -49,9 +49,9 @@
 </div>
 </div>
 
-<div *ngIf="this.carritoProductos.length == 0">
+<div *ngIf="this.carritos.length == 0">
     <p class="text-center fw-bold mb-0" style="font-size:18px;">Actualmente no tienes productos agregados a tu carrito de compras</p> 
-    <p class="text-center" style="font-size:16px;">Para continuar, agrega productos a tu carrito de compras</p> 
+    <p class="text-center lead" style="font-size:20px;">Para continuar, agrega productos a tu carrito de compras</p> 
     <div class="d-grid gap-2 col-3 mx-auto mt-3 mb-3">
         <button class="btn btn-dark fw-bold" id="cc" routerLink="/productos">CONTINUAR COMPRANDO</button>
     </div>

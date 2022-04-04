@@ -14,7 +14,7 @@ export class UsuarioService {
 
     agregarDomicilio(usuario:Usuario) {
       this.firestore.collection('datos_usuario').add(Object.assign({},usuario)).then(() => {
-        this.router.navigate(['home']);
+        this.router.navigate(['confirmar-pedido']);
       });
     }
 
