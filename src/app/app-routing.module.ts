@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { DatosGuard } from './datos.guard';
 import { LoginGuard } from './login.guard';
+import { AgregarCategoriasComponent } from './pages/agregar-categorias/agregar-categorias.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
 import { ConfirmarPedidoComponent } from './pages/confirmar-pedido/confirmar-pedido.component';
@@ -13,6 +14,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { ValidarEmailComponent } from './pages/validar-email/validar-email.component';
+import { VerProductoComponent } from './pages/ver-producto/ver-producto.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:'full' },
@@ -25,7 +27,9 @@ const routes: Routes = [
   { path: 'datos-usuario', component: DatosUsuarioComponent, canActivate:[AuthGuard]},
   { path: 'carrito', component: CarritoComponent, canActivate:[DatosGuard, AuthGuard]},
   { path: 'confirmar-pedido', component: ConfirmarPedidoComponent, canActivate:[DatosGuard, AuthGuard]},
-  { path: 'confirmacion', component: ConfirmacionComponent, canActivate:[DatosGuard, AuthGuard]}
+  { path: 'confirmacion', component: ConfirmacionComponent, canActivate:[DatosGuard, AuthGuard]},
+  { path: 'ver-producto', component: VerProductoComponent, canActivate:[DatosGuard]},
+  { path: 'agregarCategorias', component: AgregarCategoriasComponent},
 ];
 
 @NgModule({

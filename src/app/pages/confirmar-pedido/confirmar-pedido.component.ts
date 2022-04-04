@@ -36,8 +36,14 @@ export class ConfirmarPedidoComponent implements OnInit {
           // console.log("PUSH: "+f.id);
           this.carritos.forEach((carrito) => {
             if (f.id == carrito.id_producto) {
-              this.carritoProductos.push({id:carrito.id,cantidad: carrito.cantidad, fec_solicitud: carrito.fec_solicitud, id_producto:f.id,nombre: (f.data() as any).nombre,descripcion: (f.data() as any).descripcion, tamano: (f.data() as any).tamano, tipo: (f.data() as any).tipo, url_img: (f.data() as any).url_img, precio: (f.data() as any).precio});
+              var prod = this.carritoProductos.find((element)=> {
+                return element.id_producto == f.id;
+              })
+            if (prod == null) {
+              return this.carritoProductos.push({id:carrito.id,cantidad: carrito.cantidad, fec_solicitud: carrito.fec_solicitud, id_producto:f.id,nombre: (f.data() as any).nombre,descripcion: (f.data() as any).descripcion, tamano: (f.data() as any).tamano, tipo: (f.data() as any).tipo, url_img: (f.data() as any).url_img, precio: (f.data() as any).precio});
             }
+          }
+            return false;
           });
         });
       });
@@ -63,7 +69,6 @@ export class ConfirmarPedidoComponent implements OnInit {
   }
 
   agregarPedido() {
-    console.log("hola");
     this.productoService.agregarPedido();
   }
 }

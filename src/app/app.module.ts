@@ -24,6 +24,8 @@ import { FormsModule } from '@angular/forms';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { ConfirmarPedidoComponent } from './pages/confirmar-pedido/confirmar-pedido.component';
 import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
+import { VerProductoComponent } from './pages/ver-producto/ver-producto.component';
+import { AgregarCategoriasComponent } from './pages/agregar-categorias/agregar-categorias.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.compone
     DatosUsuarioComponent,
     CarritoComponent,
     ConfirmarPedidoComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
+    VerProductoComponent,
+    AgregarCategoriasComponent
   ],
   imports: [
     BrowserModule,

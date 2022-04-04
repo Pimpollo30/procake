@@ -11,18 +11,19 @@ import { Carrito } from 'src/app/models/carrito';
 })
 export class CarritoComponent implements OnInit {
 
-  constructor(private productoService:ProductoService) { }
-
-  carritos:any[] = [];
-  productos:any[] = [];
   carritoProductos:any[] = [];
-
+  constructor(private productoService:ProductoService) { }
   ngOnInit(): void {
+    
+    var carritos:any[] = [];
+    var productos:any[] = [];
+
+  
     this.productoService.getProductosCarrito().subscribe(data => {
       this.carritoProductos = [];
-      this.carritos = [];
-      this.productos = [];
-      this.carritos = data.map(e => {
+      carritos = [];
+      productos = [];
+      carritos = data.map(e => {
         return {
           ...e.payload.doc.data() as Carrito,
           id:e.payload.doc.id
@@ -34,10 +35,16 @@ export class CarritoComponent implements OnInit {
       // console.log("ID CARRITO: "+id);
       this.productoService.getProducto(id).subscribe(f => {
           // console.log("PUSH: "+f.id);
-          this.carritos.forEach((carrito) => {
+          carritos.forEach((carrito) => {
             if (f.id == carrito.id_producto) {
-              this.carritoProductos.push({id:carrito.id,cantidad: carrito.cantidad, fec_solicitud: carrito.fec_solicitud, id_producto:f.id,nombre: (f.data() as any).nombre,descripcion: (f.data() as any).descripcion, tamano: (f.data() as any).tamano, tipo: (f.data() as any).tipo, url_img: (f.data() as any).url_img, precio: (f.data() as any).precio});
+              var prod = this.carritoProductos.find((element)=> {
+                return element.id_producto == f.id;
+              })
+            if (prod == null) {
+              return this.carritoProductos.push({id:carrito.id,cantidad: carrito.cantidad, fec_solicitud: carrito.fec_solicitud, id_producto:f.id,nombre: (f.data() as any).nombre,descripcion: (f.data() as any).descripcion, tamano: (f.data() as any).tamano, tipo: (f.data() as any).tipo, url_img: (f.data() as any).url_img, precio: (f.data() as any).precio});
             }
+          }
+            return false;
           });
         });
       });

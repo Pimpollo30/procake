@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Categoria } from '../models/categoria';
 import { Producto } from '../models/producto';
 import { AuthService } from './auth.service';
 
@@ -19,7 +20,7 @@ export class ProductoService {
   }
 
   getProducto(id:string) {
-    console.log("GET PRODUCTO: "+id);
+    // console.log("GET PRODUCTO: "+id);
     return this.firestore.collection("productos").doc(id).get()
   }
 
@@ -29,14 +30,26 @@ export class ProductoService {
 
   agregarPedido() {
     this.getProductosCarrito().subscribe(data => {
-      data.forEach((doc) => {
-        return this.firestore.collection('pedidos').add(Object.assign({},doc.payload.doc.data()));
-      });
-
       // data.forEach((doc) => {
       //   return this.firestore.doc('/carrito/'+doc.payload.doc.id).delete();
       // });
     })
     this.router.navigate(['confirmacion']);
+  }
+
+  getCategorias() {
+    return this.firestore.collection("categorias").snapshotChanges();
+  }
+
+  agregarCategoria(categoria:Categoria) {
+    this.firestore.collection('categorias').add(Object.assign({},categoria)); 
+  }
+
+  actualizarCategoria(categoria:Categoria) {
+    this.firestore.doc('categorias/'+categoria.id).update(categoria);
+  }
+
+  eliminarCategoria(id:string) {
+    this.firestore.collection('categorias').doc(id).delete(); 
   }
 }

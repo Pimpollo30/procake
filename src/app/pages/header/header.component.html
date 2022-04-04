@@ -30,9 +30,10 @@
             </a>
           
             <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-              <li *ngIf="authService.tipo == 'admin'"><h6 class="dropdown-header">Opciones de Administrador</h6></li>
-              <li *ngIf="authService.tipo == 'admin'"><a class="dropdown-item" id="logout" href="#" routerLink="/agregarProductos">Agregar productos</a></li>
-              <li *ngIf="authService.tipo == 'admin'"><hr class="dropdown-divider"></li>
+              <li><h6 class="dropdown-header">Opciones de Administrador</h6></li>
+              <li><a class="dropdown-item" id="logout" href="#" routerLink="/agregarProductos">Agregar Productos</a></li>
+              <li><a class="dropdown-item" id="logout" href="#" routerLink="/agregarCategorias">Agregar Categorías</a></li>              
+              <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" id="logout" href="#" (click)="authService.logout()">Cerrar sesión</a></li>
             </ul>
           </li>

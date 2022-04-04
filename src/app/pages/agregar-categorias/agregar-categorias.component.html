@@ -1,0 +1,38 @@
+<div class="container-fluid row">
+      
+
+        <div class="ms-2 card text-white p-0 mt-2 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+            <div class="card-header text-center h5" style="background:salmon;">AGREGAR CATEGORÍA</div>
+                <div class="card-body  bg-light text-dark">
+                    <form id="agregarProducto" enctype="multipart/form-data" #cats="ngForm">
+                        <label for="nombre" class="form-label">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control" [(ngModel)] = "categoria.nombre" required name="nombre" #nombre="ngModel">
+                        <button id="agregar" class="col-5 mx-auto mt-2 btn fw-bold" [disabled]="!cats.form.valid" (click)="agregarCategoria()">Agregar</button>
+                        <button id="agregar" class="col-5 mx-auto mt-2 btn fw-bold float-end" [disabled]="!cats.form.valid" (click)="actualizarCategoria()">Modificar</button>                        
+                    </form>
+                </div>
+
+    </div>
+
+
+
+    <div class="container-fluid mt-3 mx-auto">
+        <table class="table table-hover table-bordered w-50">
+            <thead class="table-secondary">
+                <tr>
+                    <th>ID</th>
+                    <th>Categoría</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let categoria of categorias" (click)="selectCategoria(categoria)" style="cursor: pointer;">
+                    <td>{{categoria.id}}</td>
+                    <td>{{categoria.nombre}}</td>
+                    <td>
+                        <button class="btn btn-danger fw-bold" (click)="eliminarCategoria(categoria.id)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
