@@ -48,6 +48,7 @@ export class ProductoService {
   }
 
   agregarPedido() {
+
     const user = this.authService.getUserData();
     this.firestore.collection('carrito', ref => ref 
     .where("id_usuario", "==" , user.uid)).get().subscribe(data => {
@@ -56,8 +57,11 @@ export class ProductoService {
       })
     });
     this.router.navigate(['confirmacion']);
-  }
+}
 
+  mandarLogin() {
+    this.router.navigate(['login']);
+  }
   getCategorias() {
     return this.firestore.collection("categorias").snapshotChanges();
   }

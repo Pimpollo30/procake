@@ -49,12 +49,16 @@ export class VerProductoComponent implements OnInit {
 
 
   agregarCarrito(id:string, carrito:Carrito) {
-    console.log("Mandando carrito: "+id)
-    console.log(carrito);
+    // console.log("Mandando carrito: "+id)
+    // console.log(carrito);
+    if (this.authService.isLoggedIn == true) {
     const user = this.authService.getUserData();
     this.carrito.id_usuario = user.uid;
     this.carrito.id_producto = id;
     this.productoService.agregarCarrito(carrito);
+    }else {
+      this.productoService.mandarLogin();
+    }
   }
 
   getTipo(id:string) {

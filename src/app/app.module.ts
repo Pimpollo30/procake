@@ -27,6 +27,7 @@ import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.compone
 import { VerProductoComponent } from './pages/ver-producto/ver-producto.component';
 import { AgregarCategoriasComponent } from './pages/agregar-categorias/agregar-categorias.component';
 import { Productos2Component } from './pages/productos2/productos2.component';
+import { AcercaDeComponent } from './pages/acerca-de/acerca-de.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { Productos2Component } from './pages/productos2/productos2.component';
     ConfirmacionComponent,
     VerProductoComponent,
     AgregarCategoriasComponent,
-    Productos2Component
+    Productos2Component,
+    AcercaDeComponent
   ],
   imports: [
     BrowserModule,
