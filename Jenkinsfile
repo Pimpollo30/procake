@@ -27,7 +27,8 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                bat 'firebase deploy --no-localhost'
+                bat 'firebase login --no-localhost'
+                bat 'firebase deploy'
             }
         }
     }
