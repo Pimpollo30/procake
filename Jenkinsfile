@@ -15,7 +15,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'npm run ng test --browsers=Headless --no-watch'
+                bat 'npm run ng test --browsers=Headless --watch=false --no-watch'
             }
         }
 
