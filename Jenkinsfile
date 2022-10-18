@@ -9,25 +9,25 @@ pipeline {
         stage('Install') {
             steps {
                 git branch: 'main', url: 'https://github.com/Pimpollo30/procake.git'
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npm run test --watch=false'
+                bat 'npm run ng test --watch=false'
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run ng build --base-href="./"'
+                bat 'npm run ng build --base-href="./"'
             }
         }
         
         stage('Deploy') {
             steps {
-                sh 'npm run firebase deploy'
+                bat 'npm run firebase deploy'
             }
         }
     }
