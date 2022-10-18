@@ -27,7 +27,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                bat 'firebase deploy --token 1//0fyYwBCY_DocLCgYIARAAGA8SNwF-L9Ir3kgjBKW0qCw9MtsSzzlD6w9EoXF2DXinkCf5gFUsbTd77zZKWy1TlFkFh6W6NHwZYLU'
+                bat 'firebase deploy'
             }
         }
     }
