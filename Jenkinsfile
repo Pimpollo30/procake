@@ -15,13 +15,13 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'npm run ng test --watch=false'
+                bat 'npm run test:ci'
             }
         }
 
         stage('Build') {
             steps {
-                bat 'npm run ng build --base-href="./"'
+                bat 'npm run build --base-href="./"'
             }
         }
         
