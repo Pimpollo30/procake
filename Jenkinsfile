@@ -27,7 +27,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                bat 'npm run firebase deploy'
+                bat 'firebase deploy'
             }
         }
     }
