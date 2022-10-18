@@ -32,7 +32,7 @@ describe('AppComponent', () => {
   it(`should have as title 'procake'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('procake');
+    expect(app.title).toEqual('procake123');
   });
 
 });
