@@ -27,7 +27,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                bat 'firebase deploy --token "$FIREBASE_TOKEN"'
+                bat 'firebase deploy --token %FIREBASE_TOKEN%'
             }
         }
     }
