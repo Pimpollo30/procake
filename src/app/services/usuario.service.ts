@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Usuario } from '../models/usuario';
-import { AuthService } from './auth.service';
+import { AuthService, User } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,13 +19,35 @@ export class UsuarioService {
     }
 
     obtenerDomicilio() {
-      const user = this.authService.getUserData();
+      let user = this.authService.getUserData();
+      const userState: User = {
+        uid: "abc",
+        email: "abc@gmail.com",
+        displayName: "abc",
+        photoURL: "url",
+        emailVerified: true,
+      }
+  
+      if (!user) {
+        user = userState;
+      }
       return this.firestore.collection('datos_usuario', ref => ref 
       .where("id_user", "==" , user.uid).limit(1) ).get();
     }
 
     existeDomicilio() {
-      const user = this.authService.getUserData();
+      let user = this.authService.getUserData();
+      const userState: User = {
+        uid: "abc",
+        email: "abc@gmail.com",
+        displayName: "abc",
+        photoURL: "url",
+        emailVerified: true,
+      }
+  
+      if (!user) {
+        user = userState;
+      }
       return this.firestore.collection('datos_usuario').ref.where("id_user","==",user.uid).limit(1).get();
     }
     

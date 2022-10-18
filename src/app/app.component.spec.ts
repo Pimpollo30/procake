@@ -1,14 +1,23 @@
 import { TestBed } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire/compat';
+import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { environment } from 'src/environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './pages/header/header.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+          RouterTestingModule,
+          FormsModule,
+          AppRoutingModule,
+          AngularFireModule.initializeApp(environment.firebaseConfig),
       ],
       declarations: [
+        HeaderComponent,
         AppComponent
       ],
     }).compileComponents();
@@ -26,10 +35,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('procake');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('procake app is running!');
-  });
 });

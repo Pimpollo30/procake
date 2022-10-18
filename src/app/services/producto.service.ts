@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Carrito } from '../models/carrito';
 import { Categoria } from '../models/categoria';
 import { Producto } from '../models/producto';
-import { AuthService } from './auth.service';
+import { AuthService, User } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 export class ProductoService {
 
   producto = new Producto();
+
 
   constructor(private firestore:AngularFirestore, public authService:AuthService, public router: Router) { }
 
@@ -33,7 +34,20 @@ export class ProductoService {
 
   getProductosCarrito() {
     // return this.firestore.collection('carrito').snapshotChanges();
-    const user = this.authService.getUserData();
+    let user = this.authService.getUserData();
+
+    const userState: User = {
+      uid: "abc",
+      email: "abc@gmail.com",
+      displayName: "abc",
+      photoURL: "url",
+      emailVerified: true,
+    }
+
+    if (!user) {
+      user = userState;
+    }
+
     return this.firestore.collection('carrito', ref => ref 
     .where("id_usuario", "==" , user.uid) ).snapshotChanges();
   }
@@ -49,7 +63,20 @@ export class ProductoService {
 
   agregarPedido() {
 
-    const user = this.authService.getUserData();
+    let user = this.authService.getUserData();
+
+    const userState: User = {
+      uid: "abc",
+      email: "abc@gmail.com",
+      displayName: "abc",
+      photoURL: "url",
+      emailVerified: true,
+    }
+
+    if (!user) {
+      user = userState;
+    }
+
     this.firestore.collection('carrito', ref => ref 
     .where("id_usuario", "==" , user.uid)).get().subscribe(data => {
       data.forEach(doc => {
@@ -85,7 +112,7 @@ export class ProductoService {
   }
 
   agregarCarrito(carrito:Carrito) {
-    console.log("agregando carro: "+carrito.id);
+    // console.log("agregando carro: "+carrito.id);
     this.firestore.collection('carrito').add(Object.assign({},carrito)); 
     this.router.navigate(['carrito']);
   }

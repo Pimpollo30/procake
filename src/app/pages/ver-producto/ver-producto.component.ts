@@ -35,6 +35,19 @@ export class VerProductoComponent implements OnInit {
   ngOnInit(): void {
     const producto = JSON.parse(localStorage.getItem('producto') as any);
     this.productoService.producto = producto as Producto;
+    if (!this.productoService.producto) {
+      let noNull = new Producto();
+      noNull.id = '0';
+      noNull.descripcion = 'Descripcion';
+      noNull.nombre = 'Producto';
+      noNull.precio = 0;
+      noNull.tamano = 0;
+      noNull.tipo = 'Tipo';
+      noNull.url_img= 'url';
+      this.productoService.producto = noNull;
+    }
+
+
 
     this.productoService.getCategorias().subscribe(data => {
       this.categorias = data.map(e => {
