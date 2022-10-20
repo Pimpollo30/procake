@@ -17,6 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'npm run ng test'
+                bat 'C:'
                 bat 'cd C:\\Users\\Abraham Raymundo\\eclipse-workspace\\angular'
                 bat 'mvn clean test'
             }
