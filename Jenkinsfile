@@ -19,7 +19,7 @@ pipeline {
                 bat 'npm run ng test'
                 bat '''
                 C:
-                cd C:\\Users\\Abraham Raymundo\\eclipse-workspace\\angular'
+                cd C:\\Users\\Abraham Raymundo\\eclipse-workspace\\angular
                 mvn clean test
                 '''
             }
