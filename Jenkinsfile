@@ -1,4 +1,4 @@
-pipeline {
+pipeline { 
     agent any
 
     tools {
@@ -20,7 +20,7 @@ pipeline {
                 bat 'npm run ng test'
                 bat '''
                 C:
-                cd C:\\Users\\Abraham Raymundo\\eclipse-workspace\\angular
+                cd %PRUEBA_SELENIUM%
                 mvn clean test
                 '''
             }
