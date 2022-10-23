@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                git branch: 'main', url: 'https://github.com/Pimpollo30/tutorial-procake.git'
+                git branch: 'main', url: 'https://github.com/Pimpollo30/procake.git'
                 bat 'npm install'
             }
         }
