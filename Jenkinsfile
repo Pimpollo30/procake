@@ -3,8 +3,6 @@ pipeline {
 
     tools {
         nodejs 'node'
-        maven 'maven'
-        jdk 'jdk'
     }
 
     stages {
@@ -18,11 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'npm run ng test'
-                bat '''
-                C:
-                cd %PRUEBA_SELENIUM%
-                mvn clean test
-                '''
             }
         }
 
