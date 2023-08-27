@@ -1,10 +1,8 @@
-pipeline {
+pipeline {  
     agent any
 
     tools {
         nodejs 'node'
-        maven 'maven'
-        jdk 'jdk'
     }
 
     stages {
@@ -18,11 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 bat 'npm run ng test'
-                bat '''
-                C:
-                cd C:\\Users\\Abraham Raymundo\\eclipse-workspace\\angular
-                mvn clean test
-                '''
             }
         }
 
