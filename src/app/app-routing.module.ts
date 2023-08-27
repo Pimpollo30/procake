@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'ver-producto', component: VerProductoComponent},
   { path: 'agregarCategorias', component: AgregarCategoriasComponent, canActivate:[AuthGuard]},
   { path: 'productos', component: Productos2Component},
-  { path: 'acerca-de', component: AcercaDeComponent},
+  // { path: 'acerca-de', component: AcercaDeComponent},
 ];
 
 @NgModule({
