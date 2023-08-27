@@ -1,23 +1,29 @@
 <div class="container">
-      
-    <div class="row">
-        <div class="ms-2 card text-white p-0 mt-2 col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card-header text-center h5" style="background:salmon;">AGREGAR CATEGORÍA</div>
-                <div class="card-body  bg-light text-dark">
-                    <form #cats="ngForm">
+    
+    
+    <div class="card mt-2 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="card-header text-white text-center h5 cursor-pointer" style="background:salmon;" data-bs-toggle="collapse" data-bs-target="#formCategorias">AGREGAR CATEGORÍA</div>
+        <div class="card-body collapse" id="formCategorias">
+            <form #cats="ngForm">
+                <div class="row">
+                    <div class="col-12">
                         <label for="nombre" class="form-label">Nombre:</label>
                         <input type="text" id="nombre" class="form-control" [(ngModel)] = "categoria.nombre" required name="nombre" #nombre="ngModel">
-                        <button id="agregar" type="button" class="col-12 mx-auto mt-2 btn fw-bold" [disabled]="!cats.form.valid" (click)="agregarCategoria()">Agregar</button>
-                   
-                    </form>
+                    </div>
                 </div>
-
-            </div>
-
-
-
-
-    <div class="col">
+                <div class="row my-2">
+                    <div class="col-12 col-sm-6">
+                        <button type="button" id="agregar" class="btn fw-bold w-100" [disabled]="!cats.form.valid" (click)="agregarCategoria()">Insertar</button>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <button type="button" id="modificar" class="w-100 btn fw-bold" [disabled]="!cats.form.valid" (click)="actualizarCategoria()">Actualizar</button>     
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="table-responsive">
         <table class="table table-hover table-bordered mt-2">
             <thead>
                 <tr>
@@ -31,10 +37,10 @@
                     <td (click)="selectCategoria(categoria)" style="cursor:pointer;">{{categoria.id}}</td>
                     <td (click)="selectCategoria(categoria)" style="cursor:pointer;">{{categoria.nombre}}</td>
                     <td>
-                        <button id="agregar" class="me-2 mx-auto btn fw-bold" [disabled]="!cats.form.valid" (click)="actualizarCategoria()">Modificar</button>     
-                        <button class="btn btn-danger fw-bold" (click)="eliminarCategoria(categoria.id)">Eliminar</button>                      
+                        <a class="link-primary text-decoration-none cursor-pointer" (click)="eliminarCategoria(categoria.id)">Eliminar</a>                      
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>
