@@ -1,81 +1,83 @@
 <div class="container">
-    <div class="row">
-        <div class="ms-2 card text-white p-0 mt-2 col-sm-12 col-md-6 col-lg-6 col-xl-3">
-            <div class="card-header text-center h5" style="background:salmon;">AGREGAR PRODUCTO</div>
-                <div class="card-body  bg-light text-dark">
+    <div class="card mt-2 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="card-header text-white text-center h5 cursor-pointer" style="background:salmon;" data-bs-toggle="collapse" data-bs-target="#formProductos">AGREGAR PRODUCTO</div>
+        <div class="card-body collapse" id="formProductos">
             <form #addProducto="ngForm">
-            <p>
-                <label>Nombre:</label>
-                <input type="text" class="form-control" [(ngModel)]="producto.nombre" required name="nombre" #nombre="ngModel">
-            </p>
-            <p>
-                <label>URL Imagen:</label>
-                <input type="url" class="form-control" [(ngModel)]="producto.url_img" required name="url_img" #url_img="ngModel">
-            </p>
-            <p>
-                <label>Tamaño:</label>
-                <select class="form-control" [(ngModel)]="producto.tamano" required name="tamano" #tamano="ngModel">
-                    <option *ngFor="let tam of tamanos" value="{{tam.id}}">{{tam.nombre}}</option>
-                </select>
-            </p>
-            <p>
-                <label>Tipo:</label>
-                <select class="form-control" [(ngModel)]="producto.tipo" required name="tipo" #tipo="ngModel">
-                    <option *ngFor="let tipo of categorias" value="{{tipo.id}}">{{tipo.nombre}}</option>
-                </select>
-            </p>
-            <p>
-                <label>Descripcion:</label>
-                <input type="text" class="form-control" [(ngModel)]="producto.descripcion" required name="descripcion" #descripcion="ngModel">
-            </p>
-            <p>
-                <label>Precio:</label>
-                <input type="number" class="form-control" [(ngModel)]="producto.precio" required name="precio" #precio="ngModel">
-            </p>
-            <div class="text-center">
-                <button class="btn" type="button" id="agregar" (click)="this.agregarProducto()" [disabled]="!addProducto.form.valid">
-                    Agregar producto
-                </button>
-            </div>
-        </form>
-                       
-         
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" class="form-control" [(ngModel)]="producto.nombre" required name="nombre" #nombre="ngModel">
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label>Precio:</label>
+                        <input type="number" class="form-control" [(ngModel)]="producto.precio" required name="precio" #precio="ngModel">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <label>Tamaño:</label>
+                        <select class="form-control" [(ngModel)]="producto.tamano" required name="tamano" #tamano="ngModel">
+                            <option *ngFor="let tam of tamanos" value="{{tam.id}}">{{tam.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <label>Tipo:</label>
+                        <select class="form-control" [(ngModel)]="producto.tipo" required name="tipo" #tipo="ngModel">
+                            <option *ngFor="let tipo of categorias" value="{{tipo.id}}">{{tipo.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label>Descripcion:</label>
+                        <input type="text" class="form-control" [(ngModel)]="producto.descripcion" required name="descripcion" #descripcion="ngModel">
+                    </div>
+                    <div class="col-12">
+                        <label>URL Imagen:</label>
+                        <input type="url" class="form-control" [(ngModel)]="producto.url_img" required name="url_img" #url_img="ngModel">
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col-6">
+                        <button class="btn w-100" type="button" id="agregar" (click)="this.agregarProducto()" [disabled]="!addProducto.form.valid">
+                            Insertar
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" class="btn w-100" id="modificar" (click)="this.updateProducto()">
+                            Actualizar
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-        </div>
-        <div class="col text-center">    
-            <table class="table table-hover table-bordered mt-2">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Imagen</th>
-                        <th>Tamaño</th>
-                        <th>Tipo</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let producto of productos">
-                        <td (click)="selectProducto(producto)" style="cursor:pointer">{{producto.nombre}}</td>
-                        <td (click)="selectProducto(producto)" style="cursor:pointer"><img [src]="producto.url_img" width="100"/></td>  
-                        <td (click)="selectProducto(producto)" style="cursor:pointer">{{tamanos[producto.tamano]["nombre"]}}</td>
-                        <td (click)="selectProducto(producto)" style="cursor:pointer">{{getTipo(producto.tipo)}}</td>
-                        <td (click)="selectProducto(producto)" style="cursor:pointer">{{producto.descripcion}}</td>
-                        <td (click)="selectProducto(producto)" style="cursor:pointer">${{producto.precio}}</td> 
-                        <td>
-                            <button type="button" class="btn mt-lg-2" id="modificar" (click)="this.updateProducto()">
-                                Modificar
-                            </button>
-                            <button type="button" class="btn btn-dark mt-lg-2 fw-bold" (click)="this.deleteProducto(producto.id)">
-                                X
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-   
- 
-        </div>
+    </div>
+    <div class="table-responsive">    
+        <table class="table table-hover table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Tamaño</th>
+                    <th>Tipo</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos">
+                    <td (click)="selectProducto(producto)" style="cursor:pointer">{{producto.nombre}}</td>
+                    <td (click)="selectProducto(producto)" style="cursor:pointer"><img [src]="producto.url_img" width="100"/></td>  
+                    <td (click)="selectProducto(producto)" style="cursor:pointer">{{tamanos[producto.tamano]["nombre"]}}</td>
+                    <td (click)="selectProducto(producto)" style="cursor:pointer">{{getTipo(producto.tipo)}}</td>
+                    <td (click)="selectProducto(producto)" style="cursor:pointer">{{producto.descripcion}}</td>
+                    <td (click)="selectProducto(producto)" style="cursor:pointer">${{producto.precio}}</td> 
+                    <td>
+                        <a class="link-primary text-decoration-none cursor-pointer" (click)="this.deleteProducto(producto.id)">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

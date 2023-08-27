@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { DatosGuard } from './datos.guard';
 import { LoginGuard } from './login.guard';
-import { AcercaDeComponent } from './pages/acerca-de/acerca-de.component';
 import { AgregarCategoriasComponent } from './pages/agregar-categorias/agregar-categorias.component';
 import { CarritoComponent } from './pages/carrito/carrito.component';
 import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
@@ -33,7 +32,6 @@ const routes: Routes = [
   { path: 'ver-producto', component: VerProductoComponent},
   { path: 'agregarCategorias', component: AgregarCategoriasComponent, canActivate:[AuthGuard]},
   { path: 'productos', component: Productos2Component},
-  // { path: 'acerca-de', component: AcercaDeComponent},
 ];
 
 @NgModule({

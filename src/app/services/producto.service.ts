@@ -53,7 +53,6 @@ export class ProductoService {
   }
 
   getProducto(id:string) {
-    // console.log("GET PRODUCTO: "+id);
     return this.firestore.collection("productos").doc(id).get()
   }
 
@@ -112,7 +111,6 @@ export class ProductoService {
   }
 
   agregarCarrito(carrito:Carrito) {
-    // console.log("agregando carro: "+carrito.id);
     this.firestore.collection('carrito').add(Object.assign({},carrito)); 
     this.router.navigate(['carrito']);
   }
